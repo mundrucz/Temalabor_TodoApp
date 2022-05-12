@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import _ from "lodash";
 import { Button, Row, Col, Card, CloseButton, DropdownButton, Dropdown, Container, Form, Modal } from 'react-bootstrap';
@@ -46,7 +46,7 @@ export default class App extends Component {
             "todoNote": "",
             "todoDeadline": "",
             "todoId": "",
-            "todoState":""
+            "todoState": ""
         }
     }
 
@@ -55,47 +55,109 @@ export default class App extends Component {
     }
 
     async saveChanges() {
-
-        var modifiedTodo=null;
-
+        
+        var modifiedTodo = null;
         if (this.todoState === 0) {
 
+            var array = [...this.state.todo.items];
             for (var i = 0; i < this.state.todo.items.length; i++) {
 
                 if (this.state.todo.items[i].id === this.todoId) {
 
-                    var modifiedTodo = new Todo(
+                    modifiedTodo = new Todo(
                         this.state.todo.items[i].id,
                         this.state.todoTitle,
                         this.state.todoNote,
                         this.state.todo.items[i].number,
                         this.state.todoDeadline,
-                        this.state.todo.items[i].state
-                    );
-                    if (modifiedTodo != "" && modifiedTodo.id != "" && modifiedTodo.title != ""
-                        && modifiedTodo.note != "" && modifiedTodo.deadline != "" && modifiedTodo.number != "" && modifiedTodo.state != "") {
-                        var array = [...this.state.todo.items];
+                        this.state.todo.items[i].state);
 
-                        array[modifiedTodo.number] = modifiedTodo;
+                    if (modifiedTodo.title == "") { modifiedTodo.title = this.state.todo.items[i].title }
+                    if (modifiedTodo.note == "") { modifiedTodo.note = this.state.todo.items[i].note }
+                    if (modifiedTodo.deadline == "") { modifiedTodo.deadline = this.state.todo.items[i].deadline }
 
-                        this.setState(prev => {
-                            return {
-                                ...prev,
-                                todo: {
-                                    title: "Todo",
-                                    items: array,
-                                }
-                            }
-                        })
-                    }
                 }
             }
-
-
+            array[modifiedTodo.number] = modifiedTodo;
+            this.setState(prev => { return { ...prev, todo: { title: "Todo", items: array, } } })
         }
 
-        if (modifiedTodo != "" && modifiedTodo.id != "" && modifiedTodo.title != ""
-            && modifiedTodo.note != "" && modifiedTodo.deadline != "" && modifiedTodo.number != "" && modifiedTodo.state != "") {
+        else if (this.todoState === 1) {
+
+            var array = [...this.state.inprogress.items];
+            for (var i = 0; i < this.state.inprogress.items.length; i++) {
+
+                if (this.state.inprogress.items[i].id === this.todoId) {
+
+                    modifiedTodo = new Todo(
+                        this.state.inprogress.items[i].id,
+                        this.state.todoTitle,
+                        this.state.todoNote,
+                        this.state.inprogress.items[i].number,
+                        this.state.todoDeadline,
+                        this.state.inprogress.items[i].state);
+
+                    if (modifiedTodo.title == "") { modifiedTodo.title = this.state.inprogress.items[i].title }
+                    if (modifiedTodo.note == "") { modifiedTodo.note = this.state.inprogress.items[i].note }
+                    if (modifiedTodo.deadline == "") { modifiedTodo.deadline = this.state.inprogress.items[i].deadline }
+
+                }
+            }
+            array[modifiedTodo.number] = modifiedTodo;
+            this.setState(prev => { return { ...prev, inprogress: { title: "In progress", items: array, } } })
+        }
+
+        else if (this.todoState === 2) {
+
+            var array = [...this.state.done.items];
+            for (var i = 0; i < this.state.done.items.length; i++) {
+
+                if (this.state.done.items[i].id === this.todoId) {
+
+                    modifiedTodo = new Todo(
+                        this.state.done.items[i].id,
+                        this.state.todoTitle,
+                        this.state.todoNote,
+                        this.state.done.items[i].number,
+                        this.state.todoDeadline,
+                        this.state.done.items[i].state);
+
+                    if (modifiedTodo.title == "") { modifiedTodo.title = this.state.done.items[i].title }
+                    if (modifiedTodo.note == "") { modifiedTodo.note = this.state.done.items[i].note }
+                    if (modifiedTodo.deadline == "") { modifiedTodo.deadline = this.state.done.items[i].deadline }
+
+                }
+            }
+            array[modifiedTodo.number] = modifiedTodo;
+            this.setState(prev => { return { ...prev, done: { title: "Done", items: array, } } })
+        }
+
+        else if (this.todoState === 3) {
+
+            var array = [...this.state.postponed.items];
+            for (var i = 0; i < this.state.postponed.items.length; i++) {
+
+                if (this.state.postponed.items[i].id === this.todoId) {
+
+                    modifiedTodo = new Todo(
+                        this.state.postponed.items[i].id,
+                        this.state.todoTitle,
+                        this.state.todoNote,
+                        this.state.postponed.items[i].number,
+                        this.state.todoDeadline,
+                        this.state.postponed.items[i].state);
+
+                    if (modifiedTodo.title == "") { modifiedTodo.title = this.state.postponed.items[i].title }
+                    if (modifiedTodo.note == "") { modifiedTodo.note = this.state.postponed.items[i].note }
+                    if (modifiedTodo.deadline == "") { modifiedTodo.deadline = this.state.postponed.items[i].deadline }
+
+                }
+            }
+            array[modifiedTodo.number] = modifiedTodo;
+            this.setState(prev => { return { ...prev, postponed: { title: "Postponed", items: array, } } })
+        }
+
+        if (modifiedTodo != null) {
             await axios.put(`api/todos/${modifiedTodo.id}`,
                 {
                     id: modifiedTodo.id,
@@ -107,6 +169,10 @@ export default class App extends Component {
                 }
             )
         }
+        this.state.todoNote = "";
+        this.state.todoTitle = "";
+        this.state.todoDeadline = "";
+        this.state.todoId = "";
     }
 
     openForm(todo) {
@@ -151,7 +217,7 @@ export default class App extends Component {
                 state: todo.state,
             }
         ).then((response) => todo.id = response.data.id);
-        
+
 
         var array = [...this.state.todo.items];
         array.push(todo);
@@ -177,17 +243,19 @@ export default class App extends Component {
         }
 
         if (key == 0) {
-            this.setState( prev => { return { ...prev, todo: { title: "Todo", items: array, }}})
+            this.setState(prev => { return { ...prev, todo: { title: "Todo", items: array, } } })
         }
 
         else if (key == 1) {
-            this.setState( prev => { return { ...prev, inprogress: { title: "In Progress", items: array, }}})
+            this.setState(prev => { return { ...prev, inprogress: { title: "In Progress", items: array, } } })
         }
 
-        else if (key == 2) { this.setState(prev => { return { ...prev, done: { title: "Done", items: array, }}})
+        else if (key == 2) {
+            this.setState(prev => { return { ...prev, done: { title: "Done", items: array, } } })
         }
 
-        else if (key == 3) { this.setState(prev => { return { ...prev, postponed: { title: "Postponed", items: array, }}})
+        else if (key == 3) {
+            this.setState(prev => { return { ...prev, postponed: { title: "Postponed", items: array, } } })
         }
 
         await axios.delete(`api/todos/${copyTodo.id}`);
@@ -204,7 +272,8 @@ export default class App extends Component {
             todo.number = array.length;
 
             this.setState(prev => {
-                return { ...prev, inprogress: { title: "In Progress", items: array, }}})
+                return { ...prev, inprogress: { title: "In Progress", items: array, } }
+            })
         }
 
         else if (newState == 0) {
@@ -213,25 +282,25 @@ export default class App extends Component {
             todo.number = array.length;
             array.push(todo);
 
-            this.setState(prev => { return { ...prev, todo: { title: "ToDo", items: array, }}})
+            this.setState(prev => { return { ...prev, todo: { title: "ToDo", items: array, } } })
         }
 
         else if (newState == 2) {
             var array = [...this.state.done.items];
             todo.state = 2;
-            todo.number = array.length 
+            todo.number = array.length
             array.push(todo);
 
-            this.setState(prev => { return { ...prev, done: { title: "Done", items: array, }}})
+            this.setState(prev => { return { ...prev, done: { title: "Done", items: array, } } })
         }
 
         else if (newState == 3) {
             var array = [...this.state.postponed.items];
             todo.state = 3;
-            todo.number = array.length ;
+            todo.number = array.length;
             array.push(todo);
 
-            this.setState(prev => { return { ...prev, postponed: { title: "Postponed", items: array, }}})
+            this.setState(prev => { return { ...prev, postponed: { title: "Postponed", items: array, } } })
         }
 
         await axios.post(`/api/todos`,
@@ -262,7 +331,7 @@ export default class App extends Component {
             }
 
 
-            this.setState(prev => {return { ...prev, todo: { title: "Todo", items: array, }}})
+            this.setState(prev => { return { ...prev, todo: { title: "Todo", items: array, } } })
         }
 
         if (key == 1) {
@@ -276,7 +345,7 @@ export default class App extends Component {
             }
 
 
-            this.setState(prev => { return { ...prev, inprogress: { title: "In progress", items: array,}}})
+            this.setState(prev => { return { ...prev, inprogress: { title: "In progress", items: array, } } })
         }
 
         if (key == 2) {
@@ -290,7 +359,7 @@ export default class App extends Component {
             }
 
 
-            this.setState(prev => { return { ...prev, done: { title: "Done", items: array, }}})
+            this.setState(prev => { return { ...prev, done: { title: "Done", items: array, } } })
         }
 
         if (key == 3) {
@@ -303,7 +372,7 @@ export default class App extends Component {
                 array[i].number = i;
             }
 
-            this.setState(prev => { return { ...prev, postponed: { title: "Postponed", items: array, }}})
+            this.setState(prev => { return { ...prev, postponed: { title: "Postponed", items: array, } } })
         }
 
         await axios.put(`api/todos/${todo.id}`,
@@ -331,29 +400,32 @@ export default class App extends Component {
     }
 
     async changePriorityDown(todo, state, key) {
-       
-        if (key == 0) {
-            var array = [...this.state.todo.items];
 
-            if (todo.number === array.length-1 ) { return }
+        if (key === 0) {
+            var array = this.state.todo.items;
 
-            var number = todo.id;
+            if (todo.number === array.length - 1) { return }
+
+            var number = todo.number;
             [array[number], array[number + 1]] = [array[number + 1], array[number]];
             var todo2 = array[number];
 
+
+
             for (var i = 0; i < array.length; i++) {
+
                 array[i].number = i;
             }
 
-            this.setState(prev => { return { ...prev, todo: { title: "Todo", items: array, }}})
+            this.setState(prev => { return { ...prev, todo: { title: "Todo", items: array, } } })
         }
 
         else if (key == 1) {
             var array = [...this.state.inprogress.items];
 
-            if (todo.number === array.length - 1) { return}
+            if (todo.number === array.length - 1) { return }
 
-            var number = todo.id;
+            var number = todo.number;
             [array[number], array[number + 1]] = [array[number + 1], array[number]];
             var todo2 = array[number];
 
@@ -361,7 +433,7 @@ export default class App extends Component {
                 array[i].number = i;
             }
 
-            this.setState(prev => { return { ...prev, inprogress: { title: "In progress", items: array, }}})
+            this.setState(prev => { return { ...prev, inprogress: { title: "In progress", items: array, } } })
         }
 
         else if (key == 2) {
@@ -369,7 +441,7 @@ export default class App extends Component {
 
             if (todo.number === array.length - 1) { return }
 
-            var number = todo.id;
+            var number = todo.number;
             [array[number], array[number + 1]] = [array[number + 1], array[number]];
             var todo2 = array[number];
 
@@ -377,7 +449,7 @@ export default class App extends Component {
                 array[i].number = i;
             }
 
-            this.setState(prev => { return { ...prev, done: { title: "Done", items: array, }}})
+            this.setState(prev => { return { ...prev, done: { title: "Done", items: array, } } })
         }
 
         else if (key == 3) {
@@ -385,7 +457,7 @@ export default class App extends Component {
 
             if (todo.number === array.length - 1) { return };
 
-            var number = todo.id;
+            var number = todo.number;
             [array[number], array[number + 1]] = [array[number + 1], array[number]];
             var todo2 = array[number];
 
@@ -393,7 +465,7 @@ export default class App extends Component {
                 array[i].number = i;
             }
 
-            this.setState(prev => { return { ...prev, postponed: { title: "Postponed", items: array, }}})
+            this.setState(prev => { return { ...prev, postponed: { title: "Postponed", items: array, } } })
         }
 
         await axios.put(`api/todos/${todo.id}`,
@@ -425,15 +497,16 @@ export default class App extends Component {
         sublist.push(this.state.inprogress);
         sublist.push(this.state.done);
         sublist.push(this.state.postponed);
-        console.log(this.state);
 
-        return (  
+        return (
             <div>
                 <div class="form-popup" id="myForm" style={{
-                    display: 'none', zIndex: '1000', position: 'absolute',
-                    justifyContent: "center",
-                    alignItems: "center"}}>
-                    <Modal.Dialog>
+                    display: 'none', 
+                }}>
+                    <Modal.Dialog style={{
+                         zIndex: '1000', position: 'absolute',
+
+                    }}>
                         <Modal.Header>
                             <Modal.Title>Modify Todo</Modal.Title>
                         </Modal.Header>
@@ -448,13 +521,13 @@ export default class App extends Component {
 
                                 <Form.Group as={Col} controlId="formGridNote">
                                     <Form.Label></Form.Label>
-                                    <input id="modifyNote" type="text"  placeholder="Enter Note" required
+                                    <input id="modifyNote" type="text" placeholder="Enter Note" required
                                         onChange={(event) => { this.state.todoNote = event.target.value }}></input>
                                 </Form.Group>
 
                                 <Form.Group as={Col} controlId="formGridDeadline">
                                     <Form.Label></Form.Label>
-                                    <input id="modifyDeadline" type="date"  required
+                                    <input id="modifyDeadline" type="date" required
                                         onChange={(event) => { this.state.todoDeadline = event.target.value }}></input>
                                 </Form.Group>
 
@@ -466,7 +539,7 @@ export default class App extends Component {
                             <Button variant="primary" onClick={this.saveChanges.bind(this)}>Save changes</Button>
                         </Modal.Footer>
                     </Modal.Dialog>
-            </div>
+                </div>
 
                 <Container className="bg-light border">
                     <Form>
@@ -474,21 +547,21 @@ export default class App extends Component {
                         <Row className="mb-3">
                             <Form.Group as={Col} controlId="formGridTitle">
                                 <Form.Label></Form.Label>
-                                <input type="text"  placeholder="Enter Title" required onChange={(event) => {
+                                <input type="text" placeholder="Enter Title" required onChange={(event) => {
                                     this.state.todoTitle = event.target.value
                                 }}></input>
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridNote">
                                 <Form.Label></Form.Label>
-                                <input type="text"  placeholder="Enter Note" required onChange={(event) => { this.state.todoNote = event.target.value }}></input>
+                                <input type="text" placeholder="Enter Note" required onChange={(event) => { this.state.todoNote = event.target.value }}></input>
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridDeadline">
                                 <Form.Label></Form.Label>
-                                <input type="date"  required onChange={(event) => { this.state.todoDeadline = event.target.value }}></input>
+                                <input type="date" required onChange={(event) => { this.state.todoDeadline = event.target.value }}></input>
                             </Form.Group>
-                            <button type = "submit" class = "btn" onClick={this.addNewToDo.bind(this)} >Add</button>
+                            <button type="submit" class="btn" onClick={this.addNewToDo.bind(this)} >Add</button>
                         </Row>
 
                     </Form>
@@ -511,13 +584,13 @@ export default class App extends Component {
                                             <CloseButton onClick={this.removeTodo.bind(this, t, state, key)}></CloseButton>
 
                                             <DropdownButton id="dropdown-basic-button" title="Change state" >
-                                                <Dropdown.Item onClick = { this.changeState.bind(this, t, state, key, 0) }> To Do </Dropdown.Item>
-                                                <Dropdown.Item onClick = { this.changeState.bind(this, t, state, key, 1) }> In progress </Dropdown.Item>
-                                                <Dropdown.Item onClick = { this.changeState.bind(this, t, state, key, 2) }> Done </Dropdown.Item>
-                                                <Dropdown.Item onClick = { this.changeState.bind(this, t, state, key, 3) }> Postpone </Dropdown.Item>
+                                                <Dropdown.Item onClick={this.changeState.bind(this, t, state, key, 0)}> To Do </Dropdown.Item>
+                                                <Dropdown.Item onClick={this.changeState.bind(this, t, state, key, 1)}> In progress </Dropdown.Item>
+                                                <Dropdown.Item onClick={this.changeState.bind(this, t, state, key, 2)}> Done </Dropdown.Item>
+                                                <Dropdown.Item onClick={this.changeState.bind(this, t, state, key, 3)}> Postpone </Dropdown.Item>
                                             </DropdownButton>
 
-                                            <Button onClick={this.changePriorityUp.bind(this, t, state, key) }>
+                                            <Button onClick={this.changePriorityUp.bind(this, t, state, key)}>
                                                 <ArrowUp />
                                             </Button>
 
@@ -526,7 +599,7 @@ export default class App extends Component {
                                             </Button>
 
                                             <Button onClick={this.openForm.bind(this, t)}>
-                                                <Pencil/>
+                                                <Pencil />
                                             </Button>
 
                                         </Card.Header>
@@ -552,7 +625,7 @@ export default class App extends Component {
             </div>
         )
     }
-   
+
     async populateToDoData() {
         const data = await axios.get(`api/todos`).then((response) => response.data);
         var todo = [];
@@ -581,7 +654,7 @@ export default class App extends Component {
         }
 
         var sortedTodo = [...todo].sort((a, b) =>
-            a.number > b.number ? 1 : -1 )
+            a.number > b.number ? 1 : -1)
         todo = sortedTodo;
 
         var sortedInprogress = [...inprogress].sort((a, b) =>
@@ -614,11 +687,11 @@ export default class App extends Component {
                 title: "Postponed",
                 items: postponed,
             },
-            
+
             "todoTitle": "",
             "todoNote": "",
             "todoDeadline": "",
-        
+
         });
     }
 }
