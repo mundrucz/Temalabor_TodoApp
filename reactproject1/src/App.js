@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import _ from "lodash";
-import { Button, Row, Col, Card, CloseButton, DropdownButton, Dropdown, Container, Form, Modal } from 'react-bootstrap';
+import { Button, Row, Col, Card, DropdownButton, Dropdown, Container, Form, Modal } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import { ArrowUp, ArrowDown, Pencil } from 'react-bootstrap-icons';
+import { ArrowUp, ArrowDown, Pencil, XLg } from 'react-bootstrap-icons';
 
 class Todo {
     constructor(id, title, note, number, deadline, state,) {
@@ -561,8 +561,9 @@ export default class App extends Component {
                                 <Form.Label></Form.Label>
                                 <input type="date" required onChange={(event) => { this.state.todoDeadline = event.target.value }}></input>
                             </Form.Group>
-                            <button type="submit" class="btn" onClick={this.addNewToDo.bind(this)} >Add</button>
                         </Row>
+
+                        <Button type="submit"  onClick={this.addNewToDo.bind(this)} >Add</Button>
 
                     </Form>
                 </Container>
@@ -581,14 +582,9 @@ export default class App extends Component {
                                         className="mb-2"
                                     >
                                         <Card.Header>
-                                            <CloseButton onClick={this.removeTodo.bind(this, t, state, key)}></CloseButton>
-
-                                            <DropdownButton id="dropdown-basic-button" title="Change state" >
-                                                <Dropdown.Item onClick={this.changeState.bind(this, t, state, key, 0)}> To Do </Dropdown.Item>
-                                                <Dropdown.Item onClick={this.changeState.bind(this, t, state, key, 1)}> In progress </Dropdown.Item>
-                                                <Dropdown.Item onClick={this.changeState.bind(this, t, state, key, 2)}> Done </Dropdown.Item>
-                                                <Dropdown.Item onClick={this.changeState.bind(this, t, state, key, 3)}> Postpone </Dropdown.Item>
-                                            </DropdownButton>
+                                            <Button onClick={this.removeTodo.bind(this, t, state, key)}>
+                                                <XLg />
+                                            </Button>
 
                                             <Button onClick={this.changePriorityUp.bind(this, t, state, key)}>
                                                 <ArrowUp />
@@ -613,6 +609,13 @@ export default class App extends Component {
                                             <Card.Footer >
                                                 Deadline: {t.deadline}
                                             </Card.Footer>
+
+                                            <DropdownButton id="dropdown-basic-button" title="Change state" >
+                                                <Dropdown.Item onClick={this.changeState.bind(this, t, state, key, 0)}> To Do </Dropdown.Item>
+                                                <Dropdown.Item onClick={this.changeState.bind(this, t, state, key, 1)}> In progress </Dropdown.Item>
+                                                <Dropdown.Item onClick={this.changeState.bind(this, t, state, key, 2)}> Done </Dropdown.Item>
+                                                <Dropdown.Item onClick={this.changeState.bind(this, t, state, key, 3)}> Postpone </Dropdown.Item>
+                                            </DropdownButton>
                                         </Card.Body>
                                     </Card>
 

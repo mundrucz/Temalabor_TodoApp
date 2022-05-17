@@ -22,14 +22,14 @@ namespace BackendTests
 
             };
 
-    [TestMethod]
+        [TestMethod]
         async public Task TestGet()
         {
             var client = memoryDatabase.CreateClient();
             var response = await client.GetAsync("/api/todos");
             var todoList = await response.Content.ReadFromJsonAsync<List<ToDo>>();
 
-            Assert.AreEqual(todoList.Count, 7);
+            Assert.AreEqual(5, todoList.Count);
             Assert.IsTrue(response.IsSuccessStatusCode);
         }
 
@@ -40,11 +40,11 @@ namespace BackendTests
             var response = await client.PostAsJsonAsync<ToDo>("/api/todos", todo);
             var todoList = await response.Content.ReadFromJsonAsync<ToDo>();
 
+            Assert.IsTrue(response.IsSuccessStatusCode);
             Assert.AreEqual(todoList.Note, todo.Note);
             Assert.AreEqual(todoList.Title, todo.Title);
             Assert.AreEqual(todoList.DeadLine, todo.DeadLine);
             Assert.AreEqual(todoList.State, todo.State);
-            Assert.IsTrue(response.IsSuccessStatusCode);
 
         }
 

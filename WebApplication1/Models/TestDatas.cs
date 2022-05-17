@@ -19,65 +19,47 @@ namespace ToDoApp_Backend.Models
                 context.TodoItems.AddRange(
                     new ToDo
                     {
-                        Title = "First title",
-                        Note = "First Description",
-                        DeadLine = DateTime.Parse("2022-2-12"),
+                        Title = "Feed the Dog",
+                        Note = "He's hungry",
+                        DeadLine = DateTime.Parse("2022-2-10"),
                         State = ToDo.ToDoStates.todo,
-                        Number = 1
+                        Number = 0
                     },
 
                     new ToDo
                     {
-                        Title = "2nd title",
-                        Note = "2nd Description",
-                        DeadLine = DateTime.Parse("2022-2-12"),
+                        Title = "Eat",
+                        Note = "Chocholate",
+                        DeadLine = DateTime.Parse("2022-2-22"),
                         State = ToDo.ToDoStates.postphoned,
-                        Number = 1
+                        Number = 0
                     },
 
                     new ToDo
                     {
-                        Title = "3rd title",
-                        Note = "3rd Description",
-                        DeadLine = DateTime.Parse("2022-2-12"),
+                        Title = "Meeting",
+                        Note = "Important!",
+                        DeadLine = DateTime.Parse("2022-2-02"),
                         State = ToDo.ToDoStates.done,
-                        Number = 1
+                        Number = 0
                     },
 
                     new ToDo
                     {
-                        Title = "4th title",
-                        Note = "4th Description",
-                        DeadLine = DateTime.Parse("2022-2-12"),
+                        Title = "Go for a walk",
+                        Note = "in the forest",
+                        DeadLine = DateTime.Parse("2022-2-19"),
                         State = ToDo.ToDoStates.inprogress,
-                        Number = 1
+                        Number = 0
                     },
 
                     new ToDo
                     {
-                        Title = "5th title",
-                        Note = "5th Description",
+                        Title = "Get racoons",
+                        Note = "a lot",
                         DeadLine = DateTime.Parse("2022-2-12"),
                         State = ToDo.ToDoStates.todo,
-                        Number = 2
-                    },
-
-                    new ToDo
-                    {
-                        Title = "6th title",
-                        Note = "6th Description",
-                        DeadLine = DateTime.Parse("2022-2-12"),
-                        State = ToDo.ToDoStates.todo,
-                        Number = 3
-                    },
-
-                    new ToDo
-                    {
-                        Title = "7th title",
-                        Note = "7th Description",
-                        DeadLine = DateTime.Parse("2022-2-12"),
-                        State = ToDo.ToDoStates.inprogress,
-                        Number = 2
+                        Number = 1
                     }
                 );
                 context.SaveChanges();
