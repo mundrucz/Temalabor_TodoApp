@@ -53,15 +53,15 @@ A frontend Reacttel készült. React bootstrapet és  React bootstrap icons-t ha
 <h4>App.js</h4>
 Az oldal megjelenítésért felelős file. Egy App componenst és egy Todo osztályt tartalmaz. A Todo osztály a todo adatstruktúráját tárolja. Az App oszályban van minden, ami a megjelenítéshez kell:
 <ul>
-  <li>async saveChanges () -változtatások mentése, post api hívás</li>
-  <li>openForm ( todo ) – szerkesztőablak megjelenítése</li>
-  <li>closeForm () – szerkesztőablak bezárása</li>
-  <li>async addNewToDo () – új todo felvétele, put api hívás</li>
+  <li>async saveChanges() -változtatások mentése, post api hívás</li>
+  <li>openForm( todo ) – szerkesztőablak megjelenítése</li>
+  <li>closeForm() – szerkesztőablak bezárása</li>
+  <li>async addNewToDo() – új todo felvétele, put api hívás</li>
   <li>async removeTodo( todo, state, key ) – todo törlése, delete api hívás</li>
   <li>async changeState( todo, state, prevState, newState ) – todo state-nek megváltoztatása, post api hívás</li>
-  <li>async changePriorityUp ( todo, state, key ) – todo prioritása egyel feljebb való mozgatása, post api hívás</li>
+  <li>async changePriorityUp( todo, state, key ) – todo prioritása egyel feljebb való mozgatása, post api hívás</li>
   <li>async changePriorityDown( todo, state, key) - todo prioritása egyel lejebb való mozgatása, psot api hívás</li>
-  <li>async populateToDoData () – az oldal megjelenítésekor a todo-k betöltése, get api hívás</li>
+  <li>async populateToDoData() – az oldal megjelenítésekor a todo-k betöltése, get api hívás</li>
 </ul>
 <h3>TodoApp_Tests</h3>
 <h4>MemoryDatabase.cs</h4>
