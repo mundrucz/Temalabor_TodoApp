@@ -1,9 +1,16 @@
 <h1>ToDoApp_temalabor</h1>
 
-Az alkalmazás egy teendőkezelő Single Page Applikáció. Az oldalon lehet új teendőt (todo) felvenni, ilyenkor 3 adatot kell kötelezően megadnunk: a teendő címét, leírását és határidejét. A teendők automatikusan a „todo” állapot legaljára kerülnek. 4 állapotot különböztetünk meg egymástól: „todo”, „in progress”, „done” és „postponed”. Az oldal ezek szerint az állapotok szerint van 4 oszlopra bontva. Egy teendőt később törölhetünk, módosíthatjuk a prioritását (egy fel-, le nyíl kattintásával egyszerre 1-el kerül feljebb, vagy lejjebb), állapotát, valamint egy külön ablakban szerkeszthető címük, leírásuk és határidejük is.  
-Szoftver felépítése:
-A szoftver 3 projektből áll: ToDoApp_backend, TodoApp_frontend, TodoApp_Tests.
-ToDoApp_backend:
+Az alkalmazás egy teendőkezelő Single Page Applikáció. Az oldalon lehet új teendőt (todo) felvenni, ilyenkor 3 adatot kell kötelezően megadnunk: a teendő címét, leírását és határidejét. A teendők automatikusan a „todo” állapot legaljára kerülnek. 4 állapotot különböztetünk meg egymástól: „todo”, „in progress”, „done” és „postponed”. Az oldal ezek szerint az állapotok szerint van 4 oszlopra bontva. Egy teendőt később törölhetünk, módosíthatjuk a prioritását (egy fel-, le nyíl kattintásával 1-el kerül feljebb, vagy lejjebb), állapotát, valamint egy külön ablakban szerkeszthető címük, leírásuk és határidejük is.  
+
+<h2>Szoftver felépítése:</h2>
+A szoftver 3 projektből áll: 
+  <ul>
+  <li>ToDoApp_backend</li> 
+  <li>TodoApp_frontend</li>
+  <li>TodoApp_Tests<</li>
+  </ul>
+
+<h3>ToDoApp_backend:</h3>
 Ez a projekt az applikáció  ASP.NET Core Web Api alapú backendjét tartalmazza. Az adatokat MSQL szerverre menti. Az adateléréshez Entity framework-t használ. 
 Controllers:
 ToDosController.cs:
