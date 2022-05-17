@@ -13,11 +13,11 @@ Az applikáció ASP.NET Core Web Api alapú backendjét tartalmazza. Az adatokat
 <h5>ToDosController.cs</h5>
 Rest Api hívások segítségével tudjuk elérni az adatbázist. Ezeknek a hívások logikáját tartalmazza az osztály. 
 <ul>
-  <li><strong>GET(api/todos)</strong> - az adatbázisban lévő összes adatot visszaadja</li>
+  <li><strong>GET (api/todos)</strong> - az adatbázisban lévő összes adatot visszaadja</li>
   <li><strong>GET (api/todos/id)</strong> - egy adott id-vel rendelkező todo-t ad vissza,</li>
   <li><strong>PUT (api/todo/id)</strong> - egy adott id-val rendelkező todot ad vissza</li>
-  <li><strong>POST(api/todos)</strong> - új todo-t hoz létre</li>
-  <li><strong>DELETE(api/todos/id)</strong> - adott id-val rendelkező todo-t törlő hívás. Ha egy todo-t kitörültünk egy adott state-ből, a statben lévő todok-hoz tartozó numbereket (ami a prioritást jelöli) frissíti, hogy 0-tól fölfelé növekvő számsort alkossanak, kihagyott szám nélkül.</li>
+  <li><strong>POST (api/todos)</strong> - új todo-t hoz létre</li>
+  <li><strong>DELETE (api/todos/id)</strong> - adott id-val rendelkező todo-t törlő hívás. Ha egy todo-t kitörültünk egy adott state-ből, a statben lévő todok-hoz tartozó numbereket (ami a prioritást jelöli) frissíti, hogy 0-tól fölfelé növekvő számsort alkossanak, kihagyott szám nélkül.</li>
   </ul>
 <h4>Models</h4>
 <h5>TestDatas.cs</h5>
