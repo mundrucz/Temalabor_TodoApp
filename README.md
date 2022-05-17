@@ -7,18 +7,23 @@ A szoftver 3 projektből áll:
   <ul>
   <li>ToDoApp_backend</li> 
   <li>TodoApp_frontend</li>
-  <li>TodoApp_Tests<</li>
+  <li>TodoApp_Tests</li>
   </ul>
 
 <h3>ToDoApp_backend:</h3>
-Ez a projekt az applikáció  ASP.NET Core Web Api alapú backendjét tartalmazza. Az adatokat MSQL szerverre menti. Az adateléréshez Entity framework-t használ. 
-Controllers:
-ToDosController.cs:
+Az applikáció ASP.NET Core Web Api alapú backendjét tartalmazza. Az adatokat MSQL szerverre menti. Az adateléréshez Entity framework-t használ. 
+
+<h4>Controllers</h4>
+
+<h5>ToDosController.cs</h5>
+
 Rest Api hívások segítségével tudjuk elérni az adatbázist. Ezeknek a hívások logikáját tartalmazza az osztály. 
-GET,(api/todos) - az adatbázisban lévő összes adatot visszaadja
-GET (api/todos/id) - egy adott id-vel rendelkező todo-t ad vissza, 
-PUT (api/todo/id) - egy adott id-val rendelkező todot ad vissza, 
-POST(api/todos)-új todo-t hoz létre, 
+<ul>
+  <li>**GET(api/todos)** - az adatbázisban lévő összes adatot visszaadja</li>
+  <li>**GET (api/todos/id)** - egy adott id-vel rendelkező todo-t ad vissza,</li>
+  <li>**PUT (api/todo/id)** - egy adott id-val rendelkező todot ad vissza</li>
+  <li>**POST(api/todos)** - új todo-t hoz létre</li>
+</ul>
 DELETE(api/todos/id)-adott id-val rendelkező todo-t törlő hívás. Ha egy todo-t kitörültünk egy adott state-ből, a statben lévő todok-hoz tartozó numbereket (ami a prioritást jelöli) frissíti, hogy 0-tól fölfelé növekvő számsort alkossanak, kihagyott szám nélkül.
 Models:
 TestDatas: Ha az adatbázis üres, 5 darab teszt adattal tölti fel.
