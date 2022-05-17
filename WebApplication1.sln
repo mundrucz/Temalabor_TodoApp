@@ -7,6 +7,8 @@ Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "ToDoApp_Frontend", "reactpr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoApp_Backend", "WebApplication1\ToDoApp_Backend.csproj", "{00C70DB6-C001-46D3-BA3F-234220F01732}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendTests", "BackendTests\BackendTests.csproj", "{C0D9F733-9D92-4D40-B555-F1A1842895FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{00C70DB6-C001-46D3-BA3F-234220F01732}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00C70DB6-C001-46D3-BA3F-234220F01732}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00C70DB6-C001-46D3-BA3F-234220F01732}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0D9F733-9D92-4D40-B555-F1A1842895FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0D9F733-9D92-4D40-B555-F1A1842895FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0D9F733-9D92-4D40-B555-F1A1842895FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0D9F733-9D92-4D40-B555-F1A1842895FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -187,7 +187,7 @@ export default class App extends Component {
         document.getElementById("modifyNote").value = todo.note;
         document.getElementById("modifyDeadline").value = todo.deadline;
 
-        document.getElementById("myForm").style.display = "block";
+        document.getElementById("myForm").style.display = "flex";
     }
 
     closeForm() {
@@ -501,7 +501,7 @@ export default class App extends Component {
         return (
             <div>
                 <div class="form-popup" id="myForm" style={{
-                    display: 'none', 
+                    display: 'none'
                 }}>
                     <Modal.Dialog style={{
                          zIndex: '1000', position: 'absolute',

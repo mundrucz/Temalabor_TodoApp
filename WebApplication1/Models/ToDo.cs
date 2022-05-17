@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using static ToDoApp_Backend.Models.ToDo;
 
 namespace ToDoApp_Backend.Models
 {
@@ -11,7 +12,5 @@ namespace ToDoApp_Backend.Models
         public int Number { get; set; }
         public DateTime DeadLine { get; set; }
         public ToDoStates State { get; set; }
-
     }
-    
 }
