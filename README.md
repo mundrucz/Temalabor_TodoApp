@@ -41,8 +41,8 @@ Rest Api hívások segítségével tudjuk elérni az adatbázist. Ezeknek a hív
     <li> note (String) - leírás/megjegyzés</li>
   </ul>
   
-  <h5>TodoContext</h5> 
-  Kapcsolatot állít fel (vagy létrehozza, ha még nem létezik),  egy (localdb)\\mssqllocaldb szervernévvel rendelkező adatbázisban egy TodoContext nevű adatbázisban egy dbo.Todo táblával, ahol tárolni fogja az alkalmazás todok adatait. Az adateléréshez EntityFrameworkot használ.
+  <h5>TodoContext.cs</h5> 
+  Kapcsolatot állít fel,  egy (localdb)\\mssqllocaldb szervernévvel rendelkező adatbázisban egy TodoContext nevű adatbázisban egy dbo.Todo táblával, ahol tárolni fogja az alkalmazás todok adatait. Az adateléréshez EntityFrameworkot használ.
 
 <h4>Migrations</h4>
 generált mappa - Add-Migration Init
@@ -59,8 +59,10 @@ generált mappa - Add-Migration Init
   </ul>
   
 <h4>Program.cs</h4> Felépíti az sql szerverrel a kapcsolatot és elindítja a szervert.
+
 <h3>TodoApp_frontend</h3>
 A frontend Reacttel készült. React bootstrapet és  React bootstrap icons-t használ.  
+
 <h4>App.js</h4>
 Az oldal megjelenítésért felelős file. Egy App componenst és egy Todo osztályt tartalmaz. A Todo osztály a todo adatstruktúráját tárolja. Az App oszályban van minden, ami a megjelenítéshez kell:
 <ul>
@@ -76,14 +78,15 @@ Az oldal megjelenítésért felelős file. Egy App componenst és egy Todo oszt�
 </ul>
 
 <h3>TodoApp_Tests</h3>
-<h4>MemoryDatabase.cs<h4>
+<h4>MemoryDatabase.cs</h4>
   Felállít egy memóriaalapú adatbázist, amit a tesztekhez tudunk használni.
   
-<h4>Test.cs<h4> 
+<h4>Test.cs</h4> 
   4 tesztet tartalmaz. Minden Api hívásra (GET, PUT, POST, DELETE). egyet-egyet. Tesztelésnek alapul vesszük a seedData-ban létrehozott teszt adatokat,
 
-<h2>Szoftver beüzemelése<h2>
-Szükséges NuGet package-k backend-hez:
+<h2>Szoftver beüzemelése</h2>
+
+<h3>Szükséges NuGet package-k backend-hez</h3>
   <ul>
     <li>Microsoft.EntityFrameworkCore.SqlServer</li>
     <li>Microsoft.EntityFrameworkCore.Tools</li>
@@ -91,14 +94,15 @@ Szükséges NuGet package-k backend-hez:
     <li>Microsoft.VisualStudio.Web.CodeGeneration.Design</li>
   </ul>
 
-Szükséges Node Package-k frontend-hez:
-(Node Package Manager  (npm install))
+<h3>Szükséges Node Package-k frontend-hez</h3>
+(Node Package Manager  ~ npm install)
   <ul>
     <li>react-bootstrap-icons</li>
     <li>react-bootstrap</li>
     <li>axios></li>
   </ul>
-Szükséges NuGet package-k a tesztekhez:
+  
+<h3>Szükséges NuGet package-k a tesztekhez</h3>
   <ul>
     <li>Microsoft.AspNetCore.Mvc.Tesing</li>
     <li>Microsoft.EntityFrameworkCore.Sqlite</li>
@@ -109,5 +113,5 @@ Szükséges NuGet package-k a tesztekhez:
     <li>WebGrease</li>
   </ul>
 
-A backend appsetting.json-jába található, az adatbázis csatlakozásához szükséges szervernév és adatbázis név connection stringje.
+A backend appsetting.json-jába található, az adatbázis csatlakozásához szükséges szervernév és adatbázis név connection stringje. Ha nincsen létrehozva adatbázis, a package manager consolban "Update-database" paranccsal tudjuk létrehozni.
 A programhoz visual studio 2022 verziója szükséges, elindításával a backend kód indul el először, majd a frontend alkalmazás nyílik meg egy oldalon, viszont lehetséges, hogy a backend több idő mire feláll, így az ablakot újra kell tölteni, hogy az adatok megjelenjenek az adatbázisból.
